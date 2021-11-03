@@ -1,0 +1,111 @@
+\BOOKMARK [0][-]{chapter.Appendix.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.Appendix.1.1}{Versus Pintos}{chapter.Appendix.1}% 2
+\BOOKMARK [1][-]{section.Appendix.1.2}{Project Overview}{chapter.Appendix.1}% 3
+\BOOKMARK [2][-]{subsection.Appendix.1.2.1}{Root Directory}{section.Appendix.1.2}% 4
+\BOOKMARK [2][-]{subsection.Appendix.1.2.2}{Source Tree Overview}{section.Appendix.1.2}% 5
+\BOOKMARK [2][-]{subsection.Appendix.1.2.3}{Building HAL9000 }{section.Appendix.1.2}% 6
+\BOOKMARK [2][-]{subsection.Appendix.1.2.4}{Running HAL9000 }{section.Appendix.1.2}% 7
+\BOOKMARK [1][-]{section.Appendix.1.3}{Grading}{chapter.Appendix.1}% 8
+\BOOKMARK [2][-]{subsection.Appendix.1.3.1}{Design}{section.Appendix.1.3}% 9
+\BOOKMARK [2][-]{subsection.Appendix.1.3.2}{Testing}{section.Appendix.1.3}% 10
+\BOOKMARK [1][-]{section.Appendix.1.4}{Useful documents and links}{chapter.Appendix.1}% 11
+\BOOKMARK [0][-]{chapter.Appendix.2}{Project 1: Threads}{}% 12
+\BOOKMARK [1][-]{section.Appendix.2.1}{Overview}{chapter.Appendix.2}% 13
+\BOOKMARK [2][-]{subsection.Appendix.2.1.1}{Threading System Initialization}{section.Appendix.2.1}% 14
+\BOOKMARK [2][-]{subsection.Appendix.2.1.2}{Synchronization}{section.Appendix.2.1}% 15
+\BOOKMARK [2][-]{subsection.Appendix.2.1.3}{Development}{section.Appendix.2.1}% 16
+\BOOKMARK [1][-]{section.Appendix.2.2}{Assignment}{chapter.Appendix.2}% 17
+\BOOKMARK [2][-]{subsection.Appendix.2.2.1}{Timer}{section.Appendix.2.2}% 18
+\BOOKMARK [2][-]{subsection.Appendix.2.2.2}{Priority Scheduler}{section.Appendix.2.2}% 19
+\BOOKMARK [2][-]{subsection.Appendix.2.2.3}{Priority Donation}{section.Appendix.2.2}% 20
+\BOOKMARK [2][-]{subsection.Appendix.2.2.4}{BONUS: Per-CPU ready lists}{section.Appendix.2.2}% 21
+\BOOKMARK [1][-]{section.Appendix.2.3}{Source Files}{chapter.Appendix.2}% 22
+\BOOKMARK [1][-]{section.Appendix.2.4}{FAQ}{chapter.Appendix.2}% 23
+\BOOKMARK [2][-]{subsection.Appendix.2.4.1}{Priority Scheduler}{section.Appendix.2.4}% 24
+\BOOKMARK [2][-]{subsection.Appendix.2.4.2}{Priority Donation}{section.Appendix.2.4}% 25
+\BOOKMARK [0][-]{chapter.Appendix.3}{Project 2: Userprog}{}% 26
+\BOOKMARK [1][-]{section.Appendix.3.1}{Overview}{chapter.Appendix.3}% 27
+\BOOKMARK [2][-]{subsection.Appendix.3.1.1}{Userprog Initialization}{section.Appendix.3.1}% 28
+\BOOKMARK [2][-]{subsection.Appendix.3.1.2}{Issuing system calls}{section.Appendix.3.1}% 29
+\BOOKMARK [2][-]{subsection.Appendix.3.1.3}{Working with user applications}{section.Appendix.3.1}% 30
+\BOOKMARK [1][-]{section.Appendix.3.2}{Assignment}{chapter.Appendix.3}% 31
+\BOOKMARK [2][-]{subsection.Appendix.3.2.1}{Argument Passing}{section.Appendix.3.2}% 32
+\BOOKMARK [2][-]{subsection.Appendix.3.2.2}{User memory access}{section.Appendix.3.2}% 33
+\BOOKMARK [2][-]{subsection.Appendix.3.2.3}{System calls}{section.Appendix.3.2}% 34
+\BOOKMARK [2][-]{subsection.Appendix.3.2.4}{Handling user-mode exceptions}{section.Appendix.3.2}% 35
+\BOOKMARK [1][-]{section.Appendix.3.3}{Source Files}{chapter.Appendix.3}% 36
+\BOOKMARK [1][-]{section.Appendix.3.4}{FAQ}{chapter.Appendix.3}% 37
+\BOOKMARK [0][-]{chapter.Appendix.4}{Project 3: Virtual Memory}{}% 38
+\BOOKMARK [1][-]{section.Appendix.4.1}{Overview}{chapter.Appendix.4}% 39
+\BOOKMARK [2][-]{subsection.Appendix.4.1.1}{Memory Terminology}{section.Appendix.4.1}% 40
+\BOOKMARK [2][-]{subsection.Appendix.4.1.2}{Memory Management Initialization}{section.Appendix.4.1}% 41
+\BOOKMARK [2][-]{subsection.Appendix.4.1.3}{Resource Management Overview}{section.Appendix.4.1}% 42
+\BOOKMARK [1][-]{section.Appendix.4.2}{Assignment}{chapter.Appendix.4}% 43
+\BOOKMARK [2][-]{subsection.Appendix.4.2.1}{Per Process Quotas}{section.Appendix.4.2}% 44
+\BOOKMARK [2][-]{subsection.Appendix.4.2.2}{System calls}{section.Appendix.4.2}% 45
+\BOOKMARK [2][-]{subsection.Appendix.4.2.3}{Swapping}{section.Appendix.4.2}% 46
+\BOOKMARK [2][-]{subsection.Appendix.4.2.4}{Zero Pages}{section.Appendix.4.2}% 47
+\BOOKMARK [2][-]{subsection.Appendix.4.2.5}{Stack Growth}{section.Appendix.4.2}% 48
+\BOOKMARK [1][-]{section.Appendix.4.3}{Source Files}{chapter.Appendix.4}% 49
+\BOOKMARK [1][-]{section.Appendix.4.4}{FAQ}{chapter.Appendix.4}% 50
+\BOOKMARK [0][-]{Appendix.a.A}{Reference Guide}{}% 51
+\BOOKMARK [1][-]{section.a.A.1}{HAL9000}{Appendix.a.A}% 52
+\BOOKMARK [2][-]{subsection.a.A.1.1}{Startup}{section.a.A.1}% 53
+\BOOKMARK [2][-]{subsection.a.A.1.2}{Multi-core vs Single-core}{section.a.A.1}% 54
+\BOOKMARK [2][-]{subsection.a.A.1.3}{Why 64-bit?}{section.a.A.1}% 55
+\BOOKMARK [2][-]{subsection.a.A.1.4}{Interrupt Handling}{section.a.A.1}% 56
+\BOOKMARK [1][-]{section.a.A.2}{Threads}{Appendix.a.A}% 57
+\BOOKMARK [2][-]{subsection.a.A.2.1}{Thread Structure}{section.a.A.2}% 58
+\BOOKMARK [2][-]{subsection.a.A.2.2}{Thread Functions}{section.a.A.2}% 59
+\BOOKMARK [2][-]{subsection.a.A.2.3}{Thread States}{section.a.A.2}% 60
+\BOOKMARK [2][-]{subsection.a.A.2.4}{Thread Switching}{section.a.A.2}% 61
+\BOOKMARK [2][-]{subsection.a.A.2.5}{Thread Initialization}{section.a.A.2}% 62
+\BOOKMARK [1][-]{section.a.A.3}{Interprocessor Communication}{Appendix.a.A}% 63
+\BOOKMARK [2][-]{subsection.a.A.3.1}{Parameter overview}{section.a.A.3}% 64
+\BOOKMARK [2][-]{subsection.a.A.3.2}{Usage Examples}{section.a.A.3}% 65
+\BOOKMARK [1][-]{section.a.A.4}{Processes}{Appendix.a.A}% 66
+\BOOKMARK [2][-]{subsection.a.A.4.1}{Process Structure}{section.a.A.4}% 67
+\BOOKMARK [2][-]{subsection.a.A.4.2}{Process functions}{section.a.A.4}% 68
+\BOOKMARK [2][-]{subsection.a.A.4.3}{Program Startup}{section.a.A.4}% 69
+\BOOKMARK [1][-]{section.a.A.5}{Synchronization}{Appendix.a.A}% 70
+\BOOKMARK [2][-]{subsection.a.A.5.1}{Primitive}{section.a.A.5}% 71
+\BOOKMARK [2][-]{subsection.a.A.5.2}{Executive}{section.a.A.5}% 72
+\BOOKMARK [2][-]{subsection.a.A.5.3}{Interlocked Operations}{section.a.A.5}% 73
+\BOOKMARK [2][-]{subsection.a.A.5.4}{Disabling Interrupts}{section.a.A.5}% 74
+\BOOKMARK [1][-]{section.a.A.6}{Memory Management}{Appendix.a.A}% 75
+\BOOKMARK [2][-]{subsection.a.A.6.1}{Physical Memory Management}{section.a.A.6}% 76
+\BOOKMARK [2][-]{subsection.a.A.6.2}{Virtual Memory Management}{section.a.A.6}% 77
+\BOOKMARK [2][-]{subsection.a.A.6.3}{Heap Management}{section.a.A.6}% 78
+\BOOKMARK [2][-]{subsection.a.A.6.4}{Memory Management Unit}{section.a.A.6}% 79
+\BOOKMARK [2][-]{subsection.a.A.6.5}{Page-fault handling}{section.a.A.6}% 80
+\BOOKMARK [1][-]{section.a.A.7}{Virtual Addresses}{Appendix.a.A}% 81
+\BOOKMARK [1][-]{section.a.A.8}{Paging Tables}{Appendix.a.A}% 82
+\BOOKMARK [2][-]{subsection.a.A.8.1}{Creation, Destruction and Activation}{section.a.A.8}% 83
+\BOOKMARK [2][-]{subsection.a.A.8.2}{Inspection and Updates}{section.a.A.8}% 84
+\BOOKMARK [2][-]{subsection.a.A.8.3}{Accessed and Dirty Bits}{section.a.A.8}% 85
+\BOOKMARK [1][-]{section.a.A.9}{List Structures}{Appendix.a.A}% 86
+\BOOKMARK [1][-]{section.a.A.10}{Hash Table}{Appendix.a.A}% 87
+\BOOKMARK [1][-]{section.a.A.11}{Hardware Timers}{Appendix.a.A}% 88
+\BOOKMARK [2][-]{subsection.a.A.11.1}{PIT Timer}{section.a.A.11}% 89
+\BOOKMARK [2][-]{subsection.a.A.11.2}{RTC Timer}{section.a.A.11}% 90
+\BOOKMARK [2][-]{subsection.a.A.11.3}{LAPIC Timer}{section.a.A.11}% 91
+\BOOKMARK [0][-]{Appendix.a.B}{Debugging}{}% 92
+\BOOKMARK [1][-]{section.a.B.1}{Signaling function failure}{Appendix.a.B}% 93
+\BOOKMARK [2][-]{subsection.a.B.1.1}{Interpreting STATUS values}{section.a.B.1}% 94
+\BOOKMARK [1][-]{section.a.B.2}{Logging}{Appendix.a.B}% 95
+\BOOKMARK [1][-]{section.a.B.3}{Asserts}{Appendix.a.B}% 96
+\BOOKMARK [1][-]{section.a.B.4}{Dissassembly}{Appendix.a.B}% 97
+\BOOKMARK [1][-]{section.a.B.5}{Halt debugging}{Appendix.a.B}% 98
+\BOOKMARK [0][-]{Appendix.a.C}{Development Tools}{}% 99
+\BOOKMARK [1][-]{section.a.C.1}{Setting Up the Environment for HAL9000 }{Appendix.a.C}% 100
+\BOOKMARK [2][-]{subsection.a.C.1.1}{Automatic Configuration}{section.a.C.1}% 101
+\BOOKMARK [2][-]{subsection.a.C.1.2}{Virtual Network Creation}{section.a.C.1}% 102
+\BOOKMARK [2][-]{subsection.a.C.1.3}{System Architecture}{section.a.C.1}% 103
+\BOOKMARK [2][-]{subsection.a.C.1.4}{Troubleshooting}{section.a.C.1}% 104
+\BOOKMARK [1][-]{section.a.C.2}{Visual Studio}{Appendix.a.C}% 105
+\BOOKMARK [2][-]{subsection.a.C.2.1}{Keyboard Shortcuts}{section.a.C.2}% 106
+\BOOKMARK [1][-]{section.a.C.3}{Hg}{Appendix.a.C}% 107
+\BOOKMARK [0][-]{Appendix.a.D}{Coding Style}{}% 108
+\BOOKMARK [1][-]{section.a.D.1}{Functional rules}{Appendix.a.D}% 109
+\BOOKMARK [1][-]{section.a.D.2}{Non-functional Rules}{Appendix.a.D}% 110
+\BOOKMARK [0][-]{chapter*.32}{Bibliography}{}% 111
