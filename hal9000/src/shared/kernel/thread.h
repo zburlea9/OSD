@@ -119,3 +119,9 @@ THREAD_PRIORITY
 ThreadGetPriority(
     IN_OPT  PTHREAD             Thread
     );
+
+STATUS
+(__cdecl CalculateMinimumThreadsPriority)(
+    IN PLIST_ENTRY ListEntry,
+    IN_OPT PVOID FunctionContext
+    );
