@@ -653,6 +653,71 @@ ThreadGetPriority(
     return (NULL != pThread) ? pThread->Priority : 0;
 }
 
+void 
+ThreadRecomputePriority(
+    IN_OPT PTHREAD              Thread
+)
+{
+    INTR_STATE oldState;
+    LockAcquire(&Thread->PriorityLOCK, &oldState);
+    int maxPriorityValue = Thread->RealPriority;
+    LIST_ITERATOR iterator;
+    PLIST_ENTRY pEntry;
+    pEntry = NULL;
+
+    if (IsListEmpty(&Thread->AcquiredMutexesList) != FALSE)
+    {
+        ListIteratorInit(&Thread->AcquiredMutexesList, &iterator);
+        while ((pEntry = ListIteratorNext(&iterator)) != NULL)
+        {
+            PMUTEX mutex = CONTAINING_RECORD(pEntry, MUTEX, AcquiredMutexListElem);
+            LIST_ITERATOR iterator2;
+            PLIST_ENTRY pEntry2;
+            pEntry2 = NULL;
+            if (!IsListEmpty(&mutex->WaitingList))
+            {
+                ListIteratorInit(&mutex->WaitingList, &iterator2);
+                while ((pEntry2 = ListIteratorNext(&iterator2)) != NULL)
+                {
+                    PTHREAD pElement = CONTAINING_RECORD(pEntry2, THREAD, ReadyList);
+                    if (pElement->Priority > maxPriorityValue) {
+                        maxPriorityValue = pElement->Priority;
+                    }
+                }
+            }
+        }
+        Thread->Priority = maxPriorityValue;
+        LockRelease(&Thread->PriorityLOCK, oldState);
+    }
+    else {
+        Thread->Priority = maxPriorityValue;
+        LockRelease(&Thread->PriorityLOCK, oldState);
+    }
+}
+
+void ThreadDonatePriority(
+    IN_OPT PTHREAD              ThreadWhichHolds,
+    THREAD_PRIORITY             PriorityToDonate
+)
+{
+    _Benign_race_begin_
+        ThreadWhichHolds->Priority = PriorityToDonate;
+    _Benign_race_end_
+
+        PMUTEX next = ThreadWhichHolds->WaitedMutex;
+    while (next != NULL)
+    {
+        if (ThreadGetPriority(ThreadWhichHolds->WaitedMutex->Holder) > ThreadGetPriority(ThreadWhichHolds))
+        {
+            _Benign_race_begin_
+                ThreadWhichHolds->WaitedMutex->Holder->Priority = ThreadWhichHolds->Priority;
+            _Benign_race_end_
+        }
+
+        next = ThreadWhichHolds->WaitedMutex->Holder->WaitedMutex;
+    }
+}
+
 void
 ThreadSetPriority(
     IN      THREAD_PRIORITY     NewPriority
@@ -660,7 +725,12 @@ ThreadSetPriority(
 {
     ASSERT(ThreadPriorityLowest <= NewPriority && NewPriority <= ThreadPriorityMaximum);
 
-    GetCurrentThread()->Priority = NewPriority;
+    if (NewPriority > GetCurrentThread()->Priority)
+    {
+        GetCurrentThread()->Priority = NewPriority;
+    }
+
+    GetCurrentThread()->RealPriority = NewPriority;
 }
 
 STATUS
