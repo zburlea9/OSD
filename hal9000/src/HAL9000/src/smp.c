@@ -9,6 +9,7 @@
 #include "io.h"
 #include "ex_event.h"
 #include "hw_fpu.h"
+#include "thread.h"
 
 extern void ApAsmStub();
 
@@ -867,4 +868,22 @@ BOOLEAN
     }
 
     return SUCCEEDED(status);
+}
+
+//ADDED
+
+/*
+ structura din smp.c contine lista totala de cpu-uri si ca accesam fiecare cpu si fiecare thread activ din cpu respectiv
+ am folosit funcita de ForEachElementExecute care cheaa o anumita functie pe fiecare element al unei liste
+*/
+STATUS
+SetMinimumThreadsPriority(
+    void
+)
+{
+    INTR_STATE oldState;
+    RwSpinlockAcquire(&m_smpData.CpuLock, &oldState, TRUE);
+    ForEachElementExecute(&m_smpData.CpuList, CalculateMinimumThreadsPriority, NULL, FALSE);
+    RwSpinlockRelease(&m_smpData.CpuLock, oldState, TRUE);
+    return STATUS_SUCCESS;
 }

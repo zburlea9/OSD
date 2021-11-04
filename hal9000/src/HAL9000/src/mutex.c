@@ -22,22 +22,39 @@ MutexInit(
     Mutex->MaxRecursivityDepth = Recursive ? MUTEX_MAX_RECURSIVITY_DEPTH : 1;
 }
 
-INT64
-CompareFunctionPriorities(
-    IN      PLIST_ENTRY     FirstElem,
-    IN      PLIST_ENTRY     SecondElem,
-    IN_OPT  PVOID           Context
+ThreadComparePriorityMutexList(
+    IN      PLIST_ENTRY     first,
+    IN      PLIST_ENTRY     second,
+    IN_OPT  PVOID           context
 )
 {
-    ASSERT(Context == NULL);
+    ASSERT(NULL != first);
+    ASSERT(NULL != second);
+    ASSERT(context == NULL);
 
-    PTHREAD threadFirst = CONTAINING_RECORD(FirstElem, THREAD, ReadyList);
-    PTHREAD threadSecond = CONTAINING_RECORD(SecondElem, THREAD, ReadyList);
 
-    THREAD_PRIORITY priorityThreadFirst = ThreadGetPriority(threadFirst);
-    THREAD_PRIORITY priorityThreadSecond = ThreadGetPriority(threadSecond);
+    PTHREAD pThread1 = CONTAINING_RECORD(first, THREAD, ReadyList);
+    PTHREAD pThread2 = CONTAINING_RECORD(second, THREAD, ReadyList);
 
-    return priorityThreadSecond - priorityThreadFirst;
+    THREAD_PRIORITY priority1 = ThreadGetPriority(pThread1);
+    THREAD_PRIORITY priority2 = ThreadGetPriority(pThread2);
+
+    if (priority2 > priority1) {
+
+        return 1;
+
+    }
+    else if (priority2 < priority1) {
+
+        return -1;
+
+    }
+    else {
+
+        return 0;
+
+    }
+
 }
 
 ACQUIRES_EXCL_AND_REENTRANT_LOCK(*Mutex)
@@ -73,14 +90,15 @@ MutexAcquire(
 
     while (Mutex->Holder != pCurrentThread)
     {
+ priorityDonation
         InsertTailList(&Mutex->WaitingList, &pCurrentThread->ReadyList);
 
         if (Mutex->Holder->Priority < pCurrentThread->Priority)
         {
             ThreadDonatePriority(Mutex->Holder, pCurrentThread->Priority);
         }
-
-        InsertOrderedList(&Mutex->WaitingList, &pCurrentThread->ReadyList, CompareFunctionPriorities, NULL);
+        //InsertTailList(&Mutex->WaitingList, &pCurrentThread->ReadyList);
+        InsertOrderedList(&Mutex->WaitingList, &pCurrentThread->ReadyList, ThreadComparePriorityMutexList, NULL);
         ThreadTakeBlockLock();
         LockRelease(&Mutex->MutexLock, dummyState);
         pCurrentThread->WaitedMutex = Mutex;
@@ -101,7 +119,7 @@ REQUIRES_EXCL_LOCK(*Mutex)
 void
 MutexRelease(
     INOUT       PMUTEX      Mutex
-    )
+)
 {
     INTR_STATE oldState;
     PLIST_ENTRY pEntry;

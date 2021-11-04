@@ -120,6 +120,7 @@ ThreadGetPriority(
     IN_OPT  PTHREAD             Thread
     );
 
+
 void
 ThreadRecomputePriority(
     IN_OPT PTHREAD              Thread
@@ -130,3 +131,9 @@ ThreadDonatePriority(
     IN_OPT PTHREAD              Thread,
     THREAD_PRIORITY             PriorityToDonate
 );
+STATUS
+(__cdecl CalculateMinimumThreadsPriority)(
+    IN PLIST_ENTRY ListEntry,
+    IN_OPT PVOID FunctionContext
+    );
+
