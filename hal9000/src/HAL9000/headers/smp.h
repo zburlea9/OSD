@@ -140,3 +140,8 @@ void
 SmpNotifyCpuWakeup(
     void
     );
+
+STATUS
+SetMinimumThreadsPriority(
+    void
+);

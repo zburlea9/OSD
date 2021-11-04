@@ -75,6 +75,43 @@ ExEventClearSignal(
     _InterlockedExchange8(&Event->Signaled, FALSE);
 }
 
+//ADDED
+INT64
+ThreadComparePriorityEventList(
+    IN      PLIST_ENTRY     first,
+    IN      PLIST_ENTRY     second,
+    IN_OPT  PVOID           context
+)
+{
+    ASSERT(NULL != first);
+    ASSERT(NULL != second);
+    ASSERT(context == NULL);
+
+
+    PTHREAD pThread1 = CONTAINING_RECORD(first, THREAD, ReadyList);
+    PTHREAD pThread2 = CONTAINING_RECORD(second, THREAD, ReadyList);
+
+    THREAD_PRIORITY priority1 = ThreadGetPriority(pThread1);
+    THREAD_PRIORITY priority2 = ThreadGetPriority(pThread2);
+
+    if (priority2 > priority1) {
+
+        return 1;
+
+    }
+    else if (priority2 < priority1) {
+
+        return -1;
+
+    }
+    else {
+
+        return 0;
+
+    }
+
+}
+
 void
 ExEventWaitForSignal(
     INOUT   EX_EVENT*      Event
@@ -97,7 +134,8 @@ ExEventWaitForSignal(
     while (TRUE != _InterlockedCompareExchange8(&Event->Signaled, newState, TRUE))
     {
         LockAcquire(&Event->EventLock, &dummyState);
-        InsertTailList(&Event->WaitingList, &pCurrentThread->ReadyList);
+        //InsertTailList(&Event->WaitingList, &pCurrentThread->ReadyList);
+        InsertOrderedList(&Event->WaitingList, &pCurrentThread->ReadyList, ThreadComparePriorityEventList, NULL);
         ThreadTakeBlockLock();
         LockRelease(&Event->EventLock, dummyState);
         ThreadBlock();

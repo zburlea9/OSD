@@ -22,6 +22,42 @@ MutexInit(
     Mutex->MaxRecursivityDepth = Recursive ? MUTEX_MAX_RECURSIVITY_DEPTH : 1;
 }
 
+INT64
+ThreadComparePriorityMutexList(
+    IN      PLIST_ENTRY     first,
+    IN      PLIST_ENTRY     second,
+    IN_OPT  PVOID           context
+)
+{
+    ASSERT(NULL != first);
+    ASSERT(NULL != second);
+    ASSERT(context == NULL);
+
+
+    PTHREAD pThread1 = CONTAINING_RECORD(first, THREAD, ReadyList);
+    PTHREAD pThread2 = CONTAINING_RECORD(second, THREAD, ReadyList);
+
+    THREAD_PRIORITY priority1 = ThreadGetPriority(pThread1);
+    THREAD_PRIORITY priority2 = ThreadGetPriority(pThread2);
+
+    if (priority2 > priority1) {
+
+        return 1;
+
+    }
+    else if (priority2 < priority1) {
+
+        return -1;
+
+    }
+    else {
+
+        return 0;
+
+    }
+
+}
+
 ACQUIRES_EXCL_AND_REENTRANT_LOCK(*Mutex)
 REQUIRES_NOT_HELD_LOCK(*Mutex)
 void
@@ -55,7 +91,8 @@ MutexAcquire(
 
     while (Mutex->Holder != pCurrentThread)
     {
-        InsertTailList(&Mutex->WaitingList, &pCurrentThread->ReadyList);
+        //InsertTailList(&Mutex->WaitingList, &pCurrentThread->ReadyList);
+        InsertOrderedList(&Mutex->WaitingList, &pCurrentThread->ReadyList, ThreadComparePriorityMutexList, NULL);
         ThreadTakeBlockLock();
         LockRelease(&Mutex->MutexLock, dummyState);
         ThreadBlock();
@@ -74,7 +111,7 @@ REQUIRES_EXCL_LOCK(*Mutex)
 void
 MutexRelease(
     INOUT       PMUTEX      Mutex
-    )
+)
 {
     INTR_STATE oldState;
     PLIST_ENTRY pEntry;
@@ -95,6 +132,7 @@ MutexRelease(
     pEntry = RemoveHeadList(&Mutex->WaitingList);
     if (pEntry != &Mutex->WaitingList)
     {
+
         PTHREAD pThread = CONTAINING_RECORD(pEntry, THREAD, ReadyList);
 
         // wakeup first thread
